@@ -10,7 +10,7 @@ function EndpointCell(endpoint) {
             <span class="method ${endpoint.method}">${endpoint.method}</span>
             <b>${endpoint.path}</b>
             <div class="remove" onclick="mainController.removeEndpoint('${endpoint.path}', '${endpoint.method}')">
-                <i class="fas fa-minus"></i>
+               ✕ 
             </div>
         </div>
 

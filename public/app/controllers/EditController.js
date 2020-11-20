@@ -49,13 +49,14 @@ export class EditController {
         const success = (endpoint) => {
             this.mainController.message = `Endpoint ${endpoint.method} ${endpoint.path} was saved.`;
             update("#message");
+            this.cancel();
         };
         const error = (endpoint) => {
             this.mainController.message = `Error saving ${endpoint.method} ${endpoint.path}.`;
             update("#message");
+            this.cancel();
         };
         this.endpointService.addEndpoint(this.endpoint, success, error);
-        this.cancel();
     }
 
     prepareEdit(onClose) {

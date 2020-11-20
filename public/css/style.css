@@ -1,6 +1,5 @@
 * {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 12px;
     color: #000000;
 }
 
@@ -51,7 +50,6 @@ h3 {
 
 header {
     background-color: rgb(0, 51, 102);
-    background-image: url(/img/hella_logo.png);
     background-repeat: no-repeat;
     background-position: 1em center;
     height: 80px;
@@ -74,11 +72,15 @@ footer {
 }
 
 h1 {
-    font-family: Poppins,sans-serif;
-    font-weight: 800;
-    line-height: 1.2em;
+    font-size: 20px;
+    font-family: serif;
+    font-weight: bold;
     color: #fff;
     text-align: center;
+    -webkit-box-reflect: below -5px 
+        linear-gradient(transparent,
+        rgba(0, 0, 0, 0.2));
+    letter-spacing: -2px;
 }
 
 label {
@@ -153,7 +155,7 @@ select {
 
 .endpointsGrid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     grid-gap: 20px;
 }
 
@@ -207,10 +209,10 @@ select {
     right: -10px;
     top: -10px;
     background-color: red;
-    border-radius: 10px;
+    border-radius: 20px;
     display: block-inline;
-    padding: 3px;
-    padding-left: 4px;
+    padding: 1px;
+    padding-left: 5px;
     padding-right: 5px;
     box-shadow: 3px 3px 3px #888;
     transition: all 0.3s ease;
@@ -221,7 +223,7 @@ select {
 }
 
 .remove:hover {
-    transform: scaleX(1.5) scaleY(1.5);
+    transform: scaleX(1.2) scaleY(1.2);
     box-shadow: 6px 6px 6px #888;
 }
 
@@ -343,7 +345,7 @@ span.hints span:after {
 @media only screen and (min-width: 1001px) {
     .endpointsGrid {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         grid-gap: 20px;
     }
 
