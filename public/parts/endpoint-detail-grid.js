@@ -42,9 +42,17 @@ function EndpointDetailGrid() {
 
                 <div>
                     <br>
+                    <label for="responseMime">Response MIME type</label>
+                    <br/>
+                    <span id="responseMime">${endpoint.responseMime}</span>
+                </div>
+
+                <div>
+                    <br>
                     <label for="response">Response</label>
                     <br/>
-                    <textarea id="response">${endpoint.response}</textarea>
+                    <textarea id="response"
+                        onblur=mainController.updateSelectedEndpoint()>${endpoint.response}</textarea>
                 </div>
             </div>
             </div>

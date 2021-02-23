@@ -31,6 +31,7 @@ func trapHandler(w http.ResponseWriter, r *http.Request) {
 		if p, ok2 := m[r.URL.Path[4:]]; ok2 {
 			code, err := strconv.Atoi(p.ResponseCode)
 			if err == nil {
+				w.Header().Add("Content-Type", p.ResponseMime)
 				w.WriteHeader(code)
 			}
 			fmt.Fprintf(w, p.Response)
