@@ -10,6 +10,9 @@ function ButtonBar() {
     }
     return `
         <div class="buttonBar">
+            
+            <input type="text" id="search" onkeyup=editController.onPathChanged()>
+            </input>
             <button onclick=mainController.newEndpoint()>
                 + New
             </button>
