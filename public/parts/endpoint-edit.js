@@ -37,6 +37,13 @@ function EndpointEdit() {
             </div>
 
             <div>
+                <label for="responseMime">Response MIME type</label>
+                <br/>
+                <input type="text" id="responseMime" 
+                    onkeyup=editController.onResponseMimeChanged()></input>
+            </div>
+
+            <div>
                 <label for="response">Response</label>
                 <br/>
                 <textarea id="response" onkeyup=editController.onResponseChanged()></textarea>

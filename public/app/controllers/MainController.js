@@ -86,4 +86,16 @@ export class MainController {
         update("#endpointsGrid");
         update("#menuBar");
     }
+
+    updateSelectedEndpoint() {
+        const event = window.event;
+        this.selectedEndpoint.response = event.target.value;
+        const success = (endpoint) => {
+        };
+        const error = (endpoint) => {
+            this.message = `Error saving ${endpoint.method} ${endpoint.path}.`;
+            update("#message");
+        };
+        this.endpointService.addEndpoint(this.selectedEndpoint, success, error);
+    }
 }

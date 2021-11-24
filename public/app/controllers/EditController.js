@@ -26,6 +26,12 @@ export class EditController {
         this.validateForm();
     }
 
+    onResponseMimeChanged() {
+        const event = window.event;
+        this.endpoint.responseMime = event.target.value;
+        this.validateForm();
+    }
+
     onResponseCodeChanged() {
         const event = window.event;
         this.endpoint.responseCode = event.target.value;
