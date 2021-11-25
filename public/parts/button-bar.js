@@ -14,6 +14,9 @@ function ButtonBar() {
                 <button onclick=mainController.newEndpoint()>
                     + New
                 </button>
+                <button onclick=mainController.newEndpoint()>
+                    Download
+                </button>
             </div>
 
             <div></div>
