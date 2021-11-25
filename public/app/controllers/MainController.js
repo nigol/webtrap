@@ -5,6 +5,7 @@ import {inject} from "../instances.js";
 export class MainController {
     constructor() {
         this.endpoints = [];
+        this.allEndpoints = [];
         this.message = "Starting application.";
         this.filter = "";
     }
@@ -41,10 +42,12 @@ export class MainController {
 
     refreshEndpointsData() {
         const success = (endpoints) => {
+            this.allEndpoints = endpoints;
             this.endpoints = endpoints;
             update("#endpointsGrid");
         };
         const error = (endpoints) => {
+            this.allEndpoints = endpoints;
             this.endpoints = endpoints;
             update("endpointsGrid");
         };
@@ -103,6 +106,11 @@ export class MainController {
     onFilterChanged() {
         const event = window.event;
         this.filter = event.target.value;
-        console.log(this.filter);
+        this.endpoints = this.allEndpoints.filter(endp => {
+            return endp.path.startsWith(this.filter);
+        });
+        this.selectedEndpoint = undefined;
+        update("#endpointDetailGrid");
+        update("#endpointsGrid");
     }
 }

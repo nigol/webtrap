@@ -139,6 +139,7 @@ select {
     margin-bottom: 2em;
     transition: all 0.5s ease;
     border-radius: 20px;
+    padding: 5px;
 }
 
 .buttonBar button {
