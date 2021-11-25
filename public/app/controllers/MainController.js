@@ -6,6 +6,7 @@ export class MainController {
     constructor() {
         this.endpoints = [];
         this.message = "Starting application.";
+        this.filter = "";
     }
 
     postConstruct() {
@@ -97,5 +98,11 @@ export class MainController {
             update("#message");
         };
         this.endpointService.addEndpoint(this.selectedEndpoint, success, error);
+    }
+
+    onFilterChanged() {
+        const event = window.event;
+        this.filter = event.target.value;
+        console.log(this.filter);
     }
 }

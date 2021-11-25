@@ -10,12 +10,17 @@ function ButtonBar() {
     }
     return `
         <div class="buttonBar">
-            
-            <input type="text" id="search" onkeyup=editController.onPathChanged()>
+            <div>
+                <button onclick=mainController.newEndpoint()>
+                    + New
+                </button>
+            </div>
+
+            <div></div>
+
+            <input type="text" id="filter" placeholder="Type to filter"
+                onkeyup=mainController.onFilterChanged()>
             </input>
-            <button onclick=mainController.newEndpoint()>
-                + New
-            </button>
         </div>
 
     `;
