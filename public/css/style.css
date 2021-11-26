@@ -69,6 +69,7 @@ footer {
     height: 19px;
     background-color: #d3d7dc;
     white-space: nowrap;
+    padding-left: 1em;
 }
 
 h1 {
