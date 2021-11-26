@@ -32,6 +32,9 @@ func trapHandler(w http.ResponseWriter, r *http.Request) {
 			code, err := strconv.Atoi(p.ResponseCode)
 			if err == nil {
 				w.Header().Add("Content-Type", p.ResponseMime)
+				w.Header().Add("Access-Control-Allow-Origin", "*")
+				w.Header().Add("Access-Control-Allow-Methods",
+					"GET,POST,PUT,DELETE,HEAD,OPTIONS")
 				w.WriteHeader(code)
 			}
 			fmt.Fprintf(w, p.Response)
