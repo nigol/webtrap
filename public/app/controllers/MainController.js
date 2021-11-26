@@ -113,4 +113,9 @@ export class MainController {
         update("#endpointDetailGrid");
         update("#endpointsGrid");
     }
+
+
+    download() {
+        window.open("/api/end", "_blank");
+    }
 }
