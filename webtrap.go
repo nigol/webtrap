@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"os"
 	"strconv"
+	"strings"
 	"sync"
 )
 
@@ -105,10 +106,12 @@ func handleErr(w http.ResponseWriter, err error) {
 }
 
 func main() {
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+	// First command line argument is context path, e.g. "webtrap/"
+	http.HandleFunc("/"+os.Args[1], func(w http.ResponseWriter, r *http.Request) {
 		route := "index.html"
-		if len(r.URL.Path) > 2 {
-			route = r.URL.Path[1:4]
+		trimPath := strings.ReplaceAll(r.URL.Path, os.Args[1], "")
+		if len(trimPath) > 2 {
+			route = trimPath[1:4]
 		}
 		switch route {
 		case "trp":
@@ -116,10 +119,11 @@ func main() {
 		case "api":
 			apiHandler(w, r)
 		default:
-			path := "public/" + r.URL.Path[1:]
+			path := "public/" + trimPath[1:]
 			log.Println(path)
 			http.ServeFile(w, r, path)
 		}
 	})
-	log.Fatal(http.ListenAndServe(":"+os.Args[1], nil))
+	// Second command line argument is port.
+	log.Fatal(http.ListenAndServe(":"+os.Args[2], nil))
 }
