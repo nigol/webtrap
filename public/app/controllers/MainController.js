@@ -116,6 +116,6 @@ export class MainController {
 
 
     download() {
-        window.open("/api/end", "_blank");
+        window.open(window.location.href + "api/end", "_blank");
     }
 }

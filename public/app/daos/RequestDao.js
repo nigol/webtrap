@@ -2,10 +2,11 @@
 
 export class RequestDao {
     constructor() {
+        this.baseUrl = window.location.href;
     }
 
     getRequestMethodPath(method, path, onSuccess, onError) {
-        fetch(`/api/req/${method}/${path}`, {
+        fetch(this.baseUrl + `api/req/${method}/${path}`, {
             method: "GET",
             headers: {
                 "Content-type": "application/json",

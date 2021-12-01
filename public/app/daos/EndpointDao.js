@@ -3,10 +3,11 @@
 export class EndpointDao {
     constructor() {
         this.endpoints = {};
+        this.baseUrl = window.location.href;
     }
 
     getAllEndpoints(onSuccess, onError) {
-        fetch("/api/end", {
+        fetch(this.baseUrl + "api/end", {
             method: "GET",
             headers: {
                 "Content-type": "application/json",
@@ -38,7 +39,7 @@ export class EndpointDao {
     removeEndpoint(path, method, onSuccess, onError) {
         const endpoint = this.endpoints[method][path];
         delete this.endpoints[method][path];
-        fetch("/api/end", {
+        fetch(this.baseUrl + "api/end", {
             method: "DELETE",
             headers: {
                 "Content-type": "application/json",
@@ -56,7 +57,7 @@ export class EndpointDao {
             this.endpoints[endpoint.method] = {};
         }
         this.endpoints[endpoint.method][endpoint.path] = endpoint;
-        fetch("/api/end", {
+        fetch(this.baseUrl + "api/end", {
             method: "POST",
             headers: {
                 "Content-type": "application/json",

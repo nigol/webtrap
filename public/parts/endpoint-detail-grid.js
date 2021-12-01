@@ -10,7 +10,7 @@ function EndpointDetailGrid() {
     }
     var endpoint = mainController.getSelectedEndpoint();
     return `
-        <h2><span class="method ${endpoint.method}">${endpoint.method}</span> ${endpoint.path} [${window.location.protocol}//${window.location.host}/trp${endpoint.path}]</h2>
+        <h2><span class="method ${endpoint.method}">${endpoint.method}</span> ${endpoint.path} [${window.location.href}trp${endpoint.path}]</h2>
 
         <div class="endpointDetailGrid">
             <div>

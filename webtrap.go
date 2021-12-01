@@ -17,19 +17,19 @@ var requests map[string]string = make(map[string]string)
 var endpoints map[string]map[string]Endpoint = make(map[string]map[string]Endpoint)
 var lock = sync.RWMutex{}
 
-func trapHandler(w http.ResponseWriter, r *http.Request) {
+func trapHandler(w http.ResponseWriter, r *http.Request, trimPath string) {
 	s := fmt.Sprintf("%+v", r)
 	buf := new(bytes.Buffer)
 	buf.ReadFrom(r.Body)
 	bodyString := buf.String()
 	s = s + fmt.Sprintf("\n----------------Body:\n%s", bodyString)
 	s = s + fmt.Sprintf("\n!---------------!\n")
-	key := r.Method + r.URL.Path[4:]
+	key := r.Method + trimPath[4:]
 	lock.Lock()
 	defer lock.Unlock()
 	requests[key] = s
 	if m, ok1 := endpoints[r.Method]; ok1 {
-		if p, ok2 := m[r.URL.Path[4:]]; ok2 {
+		if p, ok2 := m[trimPath[4:]]; ok2 {
 			code, err := strconv.Atoi(p.ResponseCode)
 			if err == nil {
 				w.Header().Add("Content-Type", p.ResponseMime)
@@ -43,11 +43,11 @@ func trapHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func apiHandler(w http.ResponseWriter, r *http.Request) {
-	route := r.URL.Path[5:8]
+func apiHandler(w http.ResponseWriter, r *http.Request, trimPath string) {
+	route := trimPath[5:8]
 	switch route {
 	case "req":
-		apiRequesthandler(w, r)
+		apiRequesthandler(w, r, trimPath)
 	case "end":
 		apiEndpointHandler(w, r)
 	default:
@@ -95,9 +95,9 @@ func apiEndpointHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func apiRequesthandler(w http.ResponseWriter, r *http.Request) {
+func apiRequesthandler(w http.ResponseWriter, r *http.Request, trimPath string) {
 	w.Header().Add("Content-Type", "application/json; charset=utf-8")
-	fmt.Fprintf(w, requests[r.URL.Path[9:]])
+	fmt.Fprintf(w, requests[trimPath[9:]])
 }
 
 func handleErr(w http.ResponseWriter, err error) {
@@ -115,9 +115,9 @@ func main() {
 		}
 		switch route {
 		case "trp":
-			trapHandler(w, r)
+			trapHandler(w, r, trimPath)
 		case "api":
-			apiHandler(w, r)
+			apiHandler(w, r, trimPath)
 		default:
 			path := "public/" + trimPath[1:]
 			log.Println(path)
