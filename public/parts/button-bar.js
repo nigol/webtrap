@@ -21,9 +21,14 @@ function ButtonBar() {
 
             <div></div>
 
-            <input type="text" id="filter" placeholder="Type to filter"
-                onkeyup=mainController.onFilterChanged()>
-            </input>
+            <div>
+                <input type="text" id="filter" placeholder="Type to filter"
+                    onkeyup=mainController.onFilterChanged()>
+                </input>
+                <button onclick=mainController.download()>
+                    ?
+                </button>
+            </div>
         </div>
 
     `;
