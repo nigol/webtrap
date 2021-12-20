@@ -14,6 +14,7 @@ export class MainController {
     	this.endpointService = inject("endpointService");
     	this.editController = inject("editController");
     	this.requestService = inject("requestService");
+        this.helpController = inject("helpController");
     }
     
     newEndpoint() {
@@ -89,6 +90,10 @@ export class MainController {
         update("#endpointDetailGrid");
         update("#endpointsGrid");
         update("#menuBar");
+    }
+    
+    showHelp() {
+        this.helpController.prepareHelp();
     }
 
     updateSelectedEndpoint() {

@@ -4,6 +4,7 @@ import {inject} from "./instances.js";
 
 export const mainController = inject("mainController");
 export const editController = inject("editController");
+export const helpController = inject("helpController");
 
 export function updateComponent(selector) {
     const component = document.querySelector(selector);

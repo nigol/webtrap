@@ -6,6 +6,8 @@ import {EndpointService} from "./services/EndpointService.js";
 import {EditController} from "./controllers/EditController.js";
 import {RequestDao} from "./daos/RequestDao.js";
 import {RequestService} from "./services/RequestService.js";
+import {HelpController} from "./controllers/HelpController.js"
+import {HelpDao} from "./daos/HelpDao.js"
 
 export const sessionScope = {
     "mainController": new MainController(),
@@ -13,7 +15,9 @@ export const sessionScope = {
     "endpointService": new EndpointService(),
     "editController": new EditController(),
     "requestDao": new RequestDao(),
-    "requestService": new RequestService()
+    "requestService": new RequestService(),
+    "helpController": new HelpController(),
+    "helpDao": new HelpDao()
 };
 
 export function inject(key) {

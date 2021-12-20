@@ -11,16 +11,23 @@ export class HelpController {
         this.mainController = inject("mainController");
     }
 
-    prepareHelp(onClose) {
-        this.onClose = onClose;
-        this.edit = true;
+    prepareHelp() {
+        this.help = true;
         update("#endpointEdit");
         update("#endpointsGrid");
         update("#menuBar");
+        update("#helpPage");
+    }
+    
+    close() {
+        this.help = false;
+        update("#endpointsGrid");
+        update("#menuBar");
+        update("#helpPage");
     }
 
     isHelp() {
-        return this.edit;
+        return this.help;
     }
 
     setHelp(help) {
