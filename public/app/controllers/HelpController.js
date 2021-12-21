@@ -8,11 +8,18 @@ export class HelpController {
     }
 
     postConstruct() {
-        this.mainController = inject("mainController");
+        this.helpDao = inject("helpDao");
     }
 
     prepareHelp() {
         this.help = true;
+        const success = (mdText) => {
+            document.getElementById("help").innerHTML = marked.parse(mdText);
+        };
+        const error = (errMessage) => {
+            console.log(errMesssage);
+        };
+        this.helpDao.getHelpData(success, error);
         update("#endpointEdit");
         update("#endpointsGrid");
         update("#menuBar");

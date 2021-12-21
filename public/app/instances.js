@@ -28,3 +28,4 @@ sessionScope.mainController.postConstruct();
 sessionScope.endpointService.postConstruct();
 sessionScope.editController.postConstruct();
 sessionScope.requestService.postConstruct();
+sessionScope.helpController.postConstruct();
