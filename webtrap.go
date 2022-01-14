@@ -11,6 +11,7 @@ import (
 	"strconv"
 	"strings"
 	"sync"
+	"time"
 )
 
 var requests map[string]string = make(map[string]string)
@@ -18,13 +19,15 @@ var endpoints map[string]map[string]Endpoint = make(map[string]map[string]Endpoi
 var lock = sync.RWMutex{}
 
 func trapHandler(w http.ResponseWriter, r *http.Request, trimPath string) {
-	s := fmt.Sprintf("%+v", r)
+	key := r.Method + trimPath[4:]
+	s := "#### REQUEST FROM " + time.Now().String() + "\n\n**Header & metadata**\n\n"
+	s = s + fmt.Sprintf("*%+v*", r)
+	s = s + "\n\n**BODY**\n\n"
 	buf := new(bytes.Buffer)
 	buf.ReadFrom(r.Body)
 	bodyString := buf.String()
-	s = s + fmt.Sprintf("\n----------------Body:\n%s", bodyString)
-	s = s + fmt.Sprintf("\n!---------------!\n")
-	key := r.Method + trimPath[4:]
+	s = s + "*" + bodyString + "*\n\n___\n\n"
+	s = s + requests[key]
 	lock.Lock()
 	defer lock.Unlock()
 	requests[key] = s

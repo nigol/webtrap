@@ -70,6 +70,7 @@ export class MainController {
         const success = text => {
             this.requestText = text;
             update("#endpointDetailGrid");
+            document.getElementById("requests").innerHTML = marked.parse(this.requestText);
         };
         const error = text => {
             this.requestText = text;

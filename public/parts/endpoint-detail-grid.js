@@ -14,9 +14,9 @@ function EndpointDetailGrid() {
 
         <div class="endpointDetailGrid">
             <div>
-                <label for="request">Request</label>
+                <label for="requests">Requests</label>
                 <br/>
-                <textarea id="request">${mainController.requestText}</textarea>
+                <div id="requests"></div>
             </div>
 
             <div>
